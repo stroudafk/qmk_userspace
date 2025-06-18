@@ -41,10 +41,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // [_NAVIGATION] = LAYOUT_split_3x6_3(),
     // [_FN] = LAYOUT_split_3x6_3()
 };
-// transparent _______
-// caps word CW_TOGG
-const key_override_t del_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 
+const uint16_t PROGMEM esc_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+
+combo_t key_combos[] = {
+    COMBO(esc_combo, KC_ESC),
+    COMBO(enter_combo, KC_ENT),
+};
+
+const key_override_t del_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t tab_override = ko_make_basic(MOD_BIT(KC_LSFT), KC_SPC, KC_TAB);
 // const key_override_t tab_override = {.replacement      = KC_TAB,
 //                                     .trigger           = KC_SPACE,
