@@ -8,7 +8,7 @@
 #define ENABLE_RBG_MATRIX_SOLID_COLOR
 #define RBG_MATRIX_STARTUP_MODE RBG_MATRIX_SOLID_COLOR
 #define RBG_MATRIX_DEFAULT_MODE RBG_MATRIX_SOLID_COLOR
-// #define RBG_MATRIX_DEFAULT_HUE xx // choose some solid color later using HSV
+#define RBG_MATRIX_DEFAULT_HUE 175 // a sort of teal. HSV value
 
 #define COMBO_TERM 30
 #define PERMISSIVE_HOLD

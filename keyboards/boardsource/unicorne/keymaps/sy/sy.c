@@ -1,6 +1,15 @@
 #include "quantum.h"
 #include "sy.h"
 
+// void keyboard_post_init_user(void) {
+//     rgb_matrix_enable_noeeprom();
+//     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+//     rgb_matrix_set_color_all(255, 255, 255);
+//     // don't think the above lines work. the following two might
+//     rgb_matrix_sethsv_noeeprom(0, 0, 100);
+//     rgb_matrix_set_color(index, r, g, b)
+// }
+
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (!is_keyboard_master()) {
