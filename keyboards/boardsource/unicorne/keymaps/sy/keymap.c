@@ -51,7 +51,8 @@ combo_t key_combos[] = {
 };
 
 const key_override_t del_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
-const key_override_t tab_override = ko_make_basic(MOD_BIT(KC_LSFT), KC_SPC, KC_TAB);
+const key_override_t ltab_override = ko_make_basic(MOD_BIT(KC_LSFT), KC_SPC, KC_TAB);
+const key_override_t rtab_override = ko_make_basic(MOD_BIT(KC_RSFT), KC_SPC, KC_TAB);
 // const key_override_t tab_override = {.replacement      = KC_TAB,
 //                                     .trigger           = KC_SPACE,
 //                                     .trigger_mods      = MOD_BIT(KC_LSFT),
@@ -60,5 +61,26 @@ const key_override_t tab_override = ko_make_basic(MOD_BIT(KC_LSFT), KC_SPC, KC_T
 //                                     .enabled           = NULL};
 const key_override_t *key_overrides[] = {
     &del_override,
-    &tab_override
+    &ltab_override,
+    &rtab_override
 };
+
+bool is_flow_tap_key(uint16_t keycode) {
+    if ((get_mods() & (MOD_MASK_CG | MOD_BIT_LALT)) != 0) {
+        return false; // Disable Flow Tap on hotkeys.
+    }
+    switch (get_tap_keycode(keycode)) {
+        // flow tap enabled for all alphas excepting colemak homing tn
+        case KC_SPC:
+        case KC_BSPC:
+        case KC_A ... KC_M:
+        case KC_O ... KC_S:
+        case KC_U ... KC_Z:
+        case KC_DOT:
+        case KC_COMM:
+        case KC_SCLN:
+        case KC_SLSH:
+            return true;
+    }
+    return false;
+}
